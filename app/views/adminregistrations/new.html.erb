@@ -1,0 +1,39 @@
+
+
+              <h2 class="text-uppercase text-center mb-5">Create an account</h2>
+              <%= form_with model: @admin,url: sign_up_path do |f| %>
+              <% if @admin.errors.any? %>
+                 <div class="alert alert-danger">
+                 <% @admin.errors.full_messages.each do |messages|%>
+                   <div> <%= messages%> </div>
+                  <% end %>
+                 </div>
+              <%end %>
+
+                
+                <div class="form-outline mb-2">
+                <%= f.text_field  :email,:class=>"form-control form-control-lg" %>
+                  <%= f.label :email,:class=>"form-label" %>
+                  
+                </div>
+             
+
+                <div class="form-outline mb-2">
+                 
+                  <%= f.password_field  :password,:class=>"form-control form-control-lg" %>
+                    <%= f.label :password,:class=>"form-label" %>
+                </div>
+
+ 
+                <div class="form-outline mb-2">
+                 <%= f.password_field  :password_confirmation,:class=>"form-control form-control-lg" %>
+                 <%= f.label :confirm_password,:class=>"form-label" %>
+                </div>
+
+                
+
+                
+                   <%= f.submit  "Create Account",:class=>"btn btn-success btn-block btn-lg gradient-custom-4 text-body" %>
+               
+              <% end%>
+

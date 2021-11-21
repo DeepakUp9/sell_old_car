@@ -1,0 +1,26 @@
+<%
+=begin%>
+ <h1>New Car</h1>
+
+<%= render 'form', car: @car %>
+
+<%= link_to 'Back', cars_path %> 
+<%
+=end%>
+
+
+<% content_for :header do %>
+<section class="hero is-primary">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Sell Car
+      </h1>
+    </div>
+  </div>
+</section>
+<% end %>
+
+<div class="pv4">
+  <%= render 'form', car: @car %>
+</div>

@@ -1,0 +1,15 @@
+current directory: /Users/deepakkumar/Desktop/Sell_car/vendor/ruby/2.6.0/gems/bootsnap-1.9.1/ext/bootsnap
+/Users/deepakkumar/.rvm/rubies/ruby-2.6.8/bin/ruby -I /Users/deepakkumar/.rvm/rubies/ruby-2.6.8/lib/ruby/site_ruby/2.6.0 -r ./siteconf20211121-8302-1p5ozly.rb extconf.rb
+creating Makefile
+
+current directory: /Users/deepakkumar/Desktop/Sell_car/vendor/ruby/2.6.0/gems/bootsnap-1.9.1/ext/bootsnap
+make DESTDIR\= clean
+
+current directory: /Users/deepakkumar/Desktop/Sell_car/vendor/ruby/2.6.0/gems/bootsnap-1.9.1/ext/bootsnap
+make DESTDIR\=
+compiling bootsnap.c
+linking shared-object bootsnap/bootsnap.bundle
+
+current directory: /Users/deepakkumar/Desktop/Sell_car/vendor/ruby/2.6.0/gems/bootsnap-1.9.1/ext/bootsnap
+make DESTDIR\= install
+/usr/local/opt/coreutils/bin/ginstall -c -m 0755 bootsnap.bundle ./.gem.20211121-8302-1ud74ns/bootsnap

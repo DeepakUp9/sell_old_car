@@ -1,0 +1,122 @@
+<%
+=begin%>
+ <p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Brand:</strong>
+  <%= @car.brand %>
+</p>
+
+<p>
+  <strong>Model:</strong>
+  <%= @car.model %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @car.description %>
+</p>
+
+<p>
+  <strong>Condition:</strong>
+  <%= @car.condition %>
+</p>
+
+<p>
+  <strong>Finish:</strong>
+  <%= @car.finish %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @car.title %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @car.price %>
+</p>
+
+<%= link_to 'Edit', edit_car_path(@car) %> |
+<%= link_to 'Back', cars_path %> 
+<%
+=end%>
+
+
+
+
+
+
+
+
+<% content_for :body_class, 'bg-light' %>
+
+<section class="section instrument-show">
+  <div class="columns">
+    <div class="column is-8">
+      <h1 class="title is-2"><%= @car.title %></h1>
+
+      <ul class="pv1">
+        <% if @car.brand? %>
+        <li class="inline-block pr3"><%= @car.brand %></li>
+        <% end %>
+
+        <li class="inline-block pr3"><%= @car.model %></li>
+
+        <% if @car.condition? %>
+        <li class="inline-block pr3"><%= @car.condition %></li>
+        <% end %>
+      </ul>
+
+      <div class="feature-image">
+        <%= image_tag(@car.image_url(:default)) %>
+      </div>
+
+      <div class="content pa4 mt3 bg-white border-radius-3">
+
+      <h3 class="subtitle is-4">Description</h3>
+      <%= @car.description %>
+
+
+      <h3 class="subtitle is-4 pt5">Product Specs</h3>
+
+      <table class="table is-narrow">
+        <% if @car.condition %>
+        <tr>
+          <td class="has-text-weight-bold">Condition:</td>
+          <td><%= @car.condition %></td>
+        </tr>
+        <% end %>
+        <% if @car.finish %>
+          <tr>
+            <td class="has-text-weight-bold">Finish:</td>
+            <td><%= @car.finish %></td>
+          </tr>
+        <% end %>
+        <% if @car.brand %>
+          <tr>
+            <td class="has-text-weight-bold">Brand:</td>
+            <td><%= @car.brand %></td>
+          </tr>
+        <% end %>
+
+        <tr>
+          <td class="has-text-weight-bold">Model:</td>
+          <td><%= @car.model %></td>
+        </tr>
+      </table>
+    </div>
+    </div>
+    <div class="column is-3 is-offset-1">
+      <div class="bg-white pa4 border-radius-3">
+        <h4 class="title is-5 has-text-centered"><%= number_to_human(@car.price) %></h4>
+        <p class="has-text-centered mb4">Sold by <%= @car.user.name %></p>
+        <%= button_to 'Add to cart', line_items_path(car_id: @car), class: 'button is-warning add-to-cart' %>
+      </div>
+    </div>
+  </div>
+
+  <% if car_admin(@car) %>
+    <%= link_to 'Edit', edit_car_path(@car), class: 'button' %>
+  <% end %>
+</section>
