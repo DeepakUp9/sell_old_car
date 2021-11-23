@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SellCar</title>
+    <title>SellOldCar</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -29,7 +29,7 @@
      <nav class="navbar is-primary" role="navigation"  aria-label="main navigation ">
        <div class="navbar-brand">
           <%= link_to root_path , class: "navbar-item" do %>
-             <h1 class="title is-5">SellCar </h1>
+             <h1 class="title is-5">SellOldCar </h1>
 
           <% end %>  
 
@@ -48,7 +48,7 @@
                   
                   
                 <% if total_cart_items %>
-                     <%= link_to  cart_path(@cart), class:"navbar-item button is-warning" do %>
+                     <%= link_to  cart_path(@cart), class:"navbar-item button is-info is-rounded" do %>
                      <span class="icon is-small">
                        <i class="fa fa-shopping-cart"> </i>
                        </span>
@@ -62,10 +62,10 @@
 
 
                   <% if user_signed_in? %>
-                     <%= link_to 'Sell',new_car_path , class:"navbar-item button is-dark"%>
+                     <%= link_to 'Add car to Sell',new_car_path , class:"navbar-item button is-link is-rounded"%>
                        
                        <div class="navbar-item has-dropdown is-hoverable">
-                          <%= link_to 'Account', edit_user_registration_path, class:"navbar-link" %> 
+                          <%= link_to 'Account Setting', edit_user_registration_path, class:"navbar-link  is-rounded " %> 
                          <div class="navbar-dropdown is-right">
                                 <%=link_to current_user.email ,edit_user_registration_path ,class:"navbar-item" %>
                                 <%=link_to 'LogoutAdmin',destroy_user_session_path,method: :delete , class:"navbar-item" %>  
@@ -74,7 +74,7 @@
                           </div>
 
                           <% else %>
-                                <%=link_to 'Sign up Admin ',new_user_registration_path ,class:"navbar-item button is-warning" %> 
+                                <%=link_to 'Sign up Admin ',new_user_registration_path ,class:"navbar-item button is-info " %> 
 
                                 <%=link_to 'Sign In Admin',new_user_session_path ,class:"navbar-item button is-warning" %>   
                           <% end %>   
@@ -87,11 +87,11 @@
             <span> <%= @admin.email%></span>
           
            
-          <%= button_to "LogOut User", logout_path, method: :delete,class:"navbar-item button is-warning" %>
+          <%= button_to "LogOut User", logout_path, method: :delete,class:"navbar-item button is-info" %>
          
       <% else %>
   
-          <%= link_to "Sign Up As User ", sign_up_path,class:"navbar-item button is-warning" %>
+          <%= link_to "Sign Up As User ", sign_up_path,class:"navbar-item button is-info" %>
        
           
              <%= link_to "Login  As User", sign_in_path ,class:"navbar-item button is-warning" %>
@@ -114,8 +114,7 @@
 
 
 
-
-
+    
 
 
 
@@ -129,6 +128,23 @@
       </div>
 
 
+
+
+
+
+
+<footer class="footer">
+  <div class="content has-text-centered">
+    <p>
+
+    Legal Disclaimer | Sitemap | Career | FAQ | Contact Us
+Copyright 2021 Cars Motor India. All Rights Reserved.
+      <strong></strong>  <a href="https://jgthms.com"></a>.
+      <a href="http://opensource.org/licenses/mit-license.php"></a>. 
+      <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"></a>.
+    </p>
+  </div>
+</footer>
 
   </body>
 </html>

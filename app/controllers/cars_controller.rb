@@ -8,14 +8,18 @@ class CarsController < ApplicationController
 
     @cars = Car.all
 
-    if session[:admin_id]
-      @admin =Admin.find_by(id: session[:admin_id])
-   end
+  #   if session[:admin_id]
+  #     @admin =Admin.find_by(id: session[:admin_id])
+  #  end
 
   end
 
+
+
+
   # GET /cars/1 or /cars/1.json
   def show
+    
   end
 
   # GET /cars/new
@@ -26,6 +30,62 @@ class CarsController < ApplicationController
   # GET /cars/1/edit
   def edit
   end
+
+
+  def search
+    keyword="%" + params[:search].to_s + "%"
+    @cars =Car.find_by_sql ["Select * from cars WHERE brand like ? ",keyword]
+  end
+
+
+
+
+
+  def checkout
+
+  	if request.post?
+
+  	amount = session[:amount]
+ActiveMerchant::Billing::Base.mode = :test
+
+# Create a new credit card object
+credit_card = ActiveMerchant::Billing::CreditCard.new(
+  :number     => params[:number],
+  :month      => params[:month],
+  :year       => params[:year],
+  :first_name => params[:first_name],
+  :last_name  => params[:last_name],
+  :verification_value  => params[:verification_value]
+)
+
+
+if credit_card.valid?
+  # Create a gateway object to the TrustCommerce service
+  gateway = ActiveMerchant::Billing::TrustCommerceGateway.new(
+    :login    => 'TestMerchant',
+    :password => 'password'
+  )
+
+
+
+  # Authorize for $10 dollars (1000 cents)
+  response = gateway.authorize(amount.to_i, credit_card)
+
+  if response.success?
+    # Capture the money
+    #Triger the mailer
+    session[:cart]=nil
+    gateway.capture(amount.to_i, response.authorization)
+    redirect_to :action=>:purchase_complete
+  end
+  else
+    flash[:notice] = "Invalid credit card. Give proper inputs"
+    render :action=>:checkout
+  end
+ end
+end
+
+
 
   # POST /cars or /cars.json
   def create
@@ -67,7 +127,9 @@ class CarsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_car
+      puts "#{params[:id]}yeeeeeeee" 
       @car = Car.find(params[:id])
+      
     end
 
     # Only allow a list of trusted parameters through.

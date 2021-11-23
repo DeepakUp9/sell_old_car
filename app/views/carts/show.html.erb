@@ -1,5 +1,5 @@
 <div class="keep-shopping pv1 mt4 has-text-right">
-  <%= link_to 'Keep Shopping', car_path, class: 'button is-warning' %>
+  <%= link_to 'Continue Shopping', root_path, class: 'button is-info' %>
 </div>
 <hr />
 <section class="section">
@@ -16,3 +16,41 @@
     </div>
   </div>
 </section>
+
+
+
+<%# unless carts.line_items.empty? %>
+
+<%
+=begin%>
+ <table>
+	<%= render(cart.line_items) %>
+	<tr>
+		<td colspan="2">Total</td>
+		<td class="total_cell"><%= number_to_indian_currency(cart.total_price)  %></td>
+	</tr>
+</table> 
+<%
+=end%>
+<%# session[:amount] = cart.total_price %>
+
+
+<%# end %>
+
+
+
+
+<div class="columns is-vcentered">
+  <div class="column is-8">
+   
+  </div>
+  <div class="column is-primary">
+   	<% if user_signed_in? %>
+     
+<%= link_to "PLACE ORDER" ,:controller=>"cars",:action=>"checkout", class: 'button is-danger'%>
+	<% else %>
+	<%= link_to "PLACE ORDER", new_user_session_path %>
+	<% end %>
+
+  </div>
+</div>
